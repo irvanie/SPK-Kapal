@@ -1,0 +1,94 @@
+        <script type="text/javascript">
+            function checkInput() {
+                return confirm('Data sudah benar ?');
+            }
+            function checkDelete() {
+                return confirm('Yakin menghapus data ini?');
+            }
+            function grade() {
+                // // Get the checkbox
+                var k1 = document.getElementById("k1");
+                var k2 = document.getElementById("k2");
+                var k3 = document.getElementById("k3");
+                var k4 = document.getElementById("k4");
+                var k5 = document.getElementById("k5");
+                
+                if (k1.checked & k2.checked) {
+                    if (k2.checked & k3.checked & k4.checked & k5.checked) {
+                        $('#kondisi').val('Bagus');
+                    }
+                    else if(k2.checked & k3.checked & k4.checked){
+                        $('#kondisi').val('Cukup Bagus');
+                    }
+                    else if(k2.checked & k3.checked & k5.checked){
+                        $('#kondisi').val('Cukup Bagus');
+                    }
+                    else if(k2.checked & k4.checked & k5.checked){
+                        $('#kondisi').val('Cukup Bagus');
+                    }
+                    else if(k3.checked & k4.checked & k5.checked){
+                        $('#kondisi').val('Cukup Bagus');
+                    }
+                    else {
+                        $('#kondisi').val('Tidak Bagus');
+                    }
+                }
+                else{
+                    $('#kondisi').val('Tidak Bagus');
+                }
+            }
+
+            function hanyaAngka(evt) {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+                return true;
+            }
+        </script>
+    <div>
+        <footer>
+            <div class="container bg-dark text-center col-md-12">
+                <div class="card-footer">
+                    <h6 class="text-white">&copy Copyright 2021</h6>
+                    <h7 class="text-white">GO-SHIP</h7>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- MDBootstrap Datatables  -->
+    <script type="text/javascript" src="js/addons/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var t = $('#dtBasicExample').DataTable({
+                "columnDefs": [{
+                    "orderable": false,
+                    "targets": [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
+                }],
+                "order": [[ 1, 'asc' ]],
+                "order": [[ 2, "desc" ]],
+                "searching": false
+            });
+        
+            t.on( 'order.dt search.dt', function () {
+                t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+                    cell.innerHTML = i+1;
+                } );
+            } ).draw();
+        } );
+    </script>
+    </body>
+</html>
